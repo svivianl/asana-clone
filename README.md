@@ -18,3 +18,18 @@ Web app to help teams organize tasks and projects
   * Add projects
   * Add tasks
   
+
+## STACK
+
+* Front End
+
+  * React
+  * Redux
+  * TypeScript
+  * SASS
+  * Bootstrap
+
+* "Back End"
+
+  * FakerJS
+  * JSON Server
