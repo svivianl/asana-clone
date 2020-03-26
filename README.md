@@ -24,6 +24,7 @@ In the ```client```'s folder, run:
 
   * Add projects
   * Add tasks
+  * Add feature for late tasks
   
 
 ## STACK
