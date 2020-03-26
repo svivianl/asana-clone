@@ -1,9 +1,10 @@
 import React from 'react'
+import '../../../../../../../css/components/features/application/components/workArea/components/layout/layout.css'
 
 const Layout = () => {
 
   return (
-    <h3>Layout</h3>
+    <div className='h5-sass'>Layout</div>
   )
 }
 

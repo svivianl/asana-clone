@@ -4,7 +4,7 @@ Web app to help teams organize tasks and projects
 
 ## How to run
 
-In ```client``` folder, run:
+In the ```client```'s folder, run:
 * ```npm run scss```
 * ```npm run server```
 * ```npm start```
