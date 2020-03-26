@@ -12,6 +12,7 @@ interface Task {
   creationDate: Date;
   project: string;
 }
+
 interface TaskProps {
   task?: Task;
 }
@@ -27,4 +28,5 @@ const Task = ({ task }: TaskProps) => {
     </div>
   );
 };
+
 export default Task;
