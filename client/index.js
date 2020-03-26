@@ -46,13 +46,13 @@ const threshold = 10;
  for (let i = 1; i <= 100; i++){
    database.tasks.push({
      id: faker.random.uuid(),
-     status: database.taskStatus[getRandomId(0, 4)].id,
-     assignee: database.users[getRandomId(0, 9)].id,
+     statusId: database.taskStatus[getRandomId(0, 4)].id,
+     assigneeId: database.users[getRandomId(0, 9)].id,
      dueDate: faker.date.future(),
      creationDate: faker.date.recent(),
      title: faker.lorem.words(),
      description: faker.lorem.paragraph(),
-     project: database.projects[getRandomId(0, 9)].id,
+     projectId: database.projects[getRandomId(0, 9)].id,
    })
  }
  

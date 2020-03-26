@@ -6,6 +6,7 @@ Web app to help teams organize tasks and projects
 
 In the ```client```'s folder, run:
 * ```npm run scss```
+* ```npm run generate```
 * ```npm run server```
 * ```npm start```
 
