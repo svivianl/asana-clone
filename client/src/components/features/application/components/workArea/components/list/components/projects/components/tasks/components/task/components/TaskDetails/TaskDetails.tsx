@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+// import { SingleDatePicker } from "react-dates";
 
 interface Task {
   id: string;
@@ -28,13 +31,14 @@ const taskInitialValues: Task = {
 
 const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   // const [assignee, setAssignee] = useState({})
+  const [dueDate, setDueDate] = useState(task.dueDate);
+  const [focused, setFocused] = useState(null);
   const {
     // id,
     assignee,
     title,
     description,
     // status,
-    dueDate,
     // creationDate,
     project
   } = task;
@@ -58,6 +62,23 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
             placeholder="Task's Title"
             defaultValue={title}
           />
+        </div>
+      </div>
+      <div className="form-group row">
+        <label
+          className="col-sm-2 col-form-label"
+          htmlFor="exampleFormControlSelect1"
+        >
+          Due date
+        </label>
+        <div className="col-sm-12">
+          {/* <SingleDatePicker
+            date={dueDate} // momentPropTypes.momentObj or null
+            onDateChange={(date: any) => setDueDate(date)} // PropTypes.func.isRequired
+            focused={focused} // PropTypes.bool
+            onFocusChange={({ focused }: any) => setFocused(focused)} // PropTypes.func.isRequired
+            id="your_unique_id" // PropTypes.string.isRequired,
+          /> */}
         </div>
       </div>
       <div className="form-group row">
