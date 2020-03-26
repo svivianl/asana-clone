@@ -79,9 +79,10 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               className="form-control"
               id="assignee"
               style={{ width: "auto", flexGrow: 1 }}
+              value={assignee}
             >
               <option value={1}>Assignee 1</option>
-              <option value={2}>Assignee 2</option>
+              <option value={assignee}>Assignee 2</option>
               <option value={3}>Assignee 3</option>
               <option value={4}>Assignee 4</option>
               <option value={5}>Assignee 5</option>
