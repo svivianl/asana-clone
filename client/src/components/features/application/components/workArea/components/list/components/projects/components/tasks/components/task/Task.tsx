@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TaskDetailsForm from "./components/TaskDetails/TaskDetails";
+import TaskDetails from "./components/TaskDetails/TaskDetails";
 interface Task {
   id: string;
   assignee: string;
@@ -25,7 +25,7 @@ const Task = ({ task }: TaskProps) => {
   return (
     <div>
       {/* TODO: status bar */}
-      <TaskDetailsForm task={task} />
+      <TaskDetails task={task} />
 
       {/* TODO: comments bar */}
     </div>
