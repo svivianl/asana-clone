@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TaskStatusBar from "./components/TaskStatusBar/TaskStatusBar";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
-
 interface Task {
   id: string;
   assignee: string;
@@ -23,7 +22,7 @@ const Task = ({ task }: TaskProps) => {
   return (
     <div>
       <TaskStatusBar />
-      {/* <TaskDetails task={task} /> */}
+      <TaskDetails task={task} />
       {/* TODO: comments bar */}
     </div>
   );
