@@ -52,7 +52,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   };
 
   return (
-    <form className="m-3" onSubmit={handleSubmit}>
+    <form className="ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
       <div className="form-group row">
         <div className="col-sm-12">
           <input
