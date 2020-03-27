@@ -33,11 +33,30 @@ const Task = ({ task = taskInitialValues }: TaskProps) => {
   // useEffect(() => {
   // }, [])
 
+  // task.creationDate -> 2020-03-25T13:58:46.655Z
+
   return (
-    <div>
-      <TaskStatusBar />
-      <TaskDetails task={task} />
-      <TaskComment {...task} />
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "flex-start",
+        flexDirection: "column"
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          flexDirection: "column",
+          height: "100vh"
+        }}
+      >
+        <TaskStatusBar />
+        <TaskDetails task={task} />
+        <TaskComment {...task} />
+      </div>
     </div>
   );
 };

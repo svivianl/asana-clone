@@ -2,7 +2,7 @@ import React from "react";
 
 const TaskStatusBar = () => {
   return (
-    <div className=".container-fluid p-2 d-flex align-items-center justify-content-between border border-dark">
+    <div className="container-fluid p-2 d-flex align-items-center justify-content-between border border-dark">
       <div>
         <button type="button" className="btn btn-outline-success btn-sm">
           <i className="fas fa-check mr-2" />
