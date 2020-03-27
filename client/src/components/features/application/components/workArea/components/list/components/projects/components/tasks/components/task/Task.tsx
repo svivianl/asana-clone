@@ -36,7 +36,7 @@ const Task = ({ task = taskInitialValues }: TaskProps) => {
   return (
     <div>
       <TaskStatusBar />
-      {/* <TaskDetails task={task} /> */}
+      <TaskDetails task={task} />
       <TaskComment {...task} />
     </div>
   );

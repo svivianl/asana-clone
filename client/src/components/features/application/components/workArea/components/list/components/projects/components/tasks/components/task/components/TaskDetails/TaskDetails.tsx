@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import { SingleDatePicker } from "react-dates";
+import moment from "moment";
 
 interface Task {
   id: string;
@@ -27,14 +31,14 @@ const taskInitialValues: Task = {
 };
 
 const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
-  // const [assignee, setAssignee] = useState({})
+  const [assignee, setAssignee] = useState(task.assignee);
+  const [dueDate, setDueDate] = useState(moment(task.dueDate));
+  const [focused, setFocused] = useState(null);
   const {
     // id,
-    assignee,
     title,
     description,
     // status,
-    dueDate,
     // creationDate,
     project
   } = task;
@@ -65,6 +69,23 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
           className="col-sm-2 col-form-label"
           htmlFor="exampleFormControlSelect1"
         >
+          Due date
+        </label>
+        <div className="col-sm-12">
+          <SingleDatePicker
+            date={dueDate} // momentPropTypes.momentObj or null
+            onDateChange={(date: any) => setDueDate(date)} // PropTypes.func.isRequired
+            focused={focused} // PropTypes.bool
+            onFocusChange={({ focused }: any) => setFocused(focused)} // PropTypes.func.isRequired
+            id="your_unique_id" // PropTypes.string.isRequired,
+          />
+        </div>
+      </div>
+      <div className="form-group row">
+        <label
+          className="col-sm-2 col-form-label"
+          htmlFor="exampleFormControlSelect1"
+        >
           Assignee
         </label>
         <div className="col-sm-10">
@@ -80,7 +101,11 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               id="assignee"
               style={{ width: "auto", flexGrow: 1 }}
               value={assignee}
+              onChange={(data: any) => {
+                setAssignee(data.target.value);
+              }}
             >
+              <option value={0}>Select an Assignee</option>
               <option value={1}>Assignee 1</option>
               <option value={assignee}>Assignee 2</option>
               <option value={3}>Assignee 3</option>
