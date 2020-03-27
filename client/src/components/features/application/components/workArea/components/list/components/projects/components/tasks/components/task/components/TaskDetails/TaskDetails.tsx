@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { SingleDatePicker } from "react-dates";
+// import { SingleDatePicker } from "react-dates";
 
 interface Task {
   id: string;
@@ -72,13 +72,13 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
           Due date
         </label>
         <div className="col-sm-12">
-          <SingleDatePicker
+          {/* <SingleDatePicker
             date={dueDate} // momentPropTypes.momentObj or null
             onDateChange={(date: any) => setDueDate(date)} // PropTypes.func.isRequired
             focused={focused} // PropTypes.bool
             onFocusChange={({ focused }: any) => setFocused(focused)} // PropTypes.func.isRequired
             id="your_unique_id" // PropTypes.string.isRequired,
-          />
+          /> */}
         </div>
       </div>
       <div className="form-group row">
