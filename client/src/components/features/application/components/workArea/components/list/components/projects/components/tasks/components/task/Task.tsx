@@ -14,20 +14,30 @@ export interface Task {
   project: string;
 }
 
+const taskInitialValues: Task = {
+  id: "",
+  assignee: "",
+  title: "",
+  description: "",
+  status: "",
+  dueDate: new Date(),
+  creationDate: new Date(),
+  project: ""
+};
+
 interface TaskProps {
   task?: Task;
 }
-const Task = ({ task }: TaskProps) => {
+const Task = ({ task = taskInitialValues }: TaskProps) => {
   // const [assignee, setAssignee] = useState({})
   // useEffect(() => {
   // }, [])
-  const { assignee, creationDate } = task;
 
   return (
     <div>
       <TaskStatusBar />
       {/* <TaskDetails task={task} /> */}
-      <TaskComment assignee={assignee} creationDate={creationDate} />
+      <TaskComment {...task} />
     </div>
   );
 };
