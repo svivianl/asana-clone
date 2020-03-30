@@ -54,6 +54,9 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   return (
     <form className="ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
       <div className="form-group row">
+        <label className="col-sm-2 col-form-label" htmlFor="title">
+          Title
+        </label>
         <div className="col-sm-12">
           <input
             type="text"
@@ -65,10 +68,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         </div>
       </div>
       <div className="form-group row">
-        <label
-          className="col-sm-2 col-form-label"
-          htmlFor="exampleFormControlSelect1"
-        >
+        <label className="col-sm-2 col-form-label" htmlFor="dueDate">
           Due date
         </label>
         <div className="col-sm-12">
@@ -82,10 +82,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         </div>
       </div>
       <div className="form-group row">
-        <label
-          className="col-sm-2 col-form-label"
-          htmlFor="exampleFormControlSelect1"
-        >
+        <label className="col-sm-2 col-form-label" htmlFor="assignee">
           Assignee
         </label>
         <div className="col-sm-10">
@@ -96,7 +93,33 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
                 src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
               />
             </div>
-            <select
+            <div className="dropdown">
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Assignee
+              </button>
+              <div className="dropdown-menu" aria-labelledby="assignee">
+                <a className="dropdown-item" href="#">
+                  Select an Assignee
+                </a>
+                <a className="dropdown-item" href="#">
+                  Assignee 1
+                </a>
+                <a className="dropdown-item" href="#">
+                  Assignee 2
+                </a>
+                <a className="dropdown-item" href="#">
+                  Assignee 3
+                </a>
+              </div>
+            </div>
+            {/* <select
               className="form-control"
               id="assignee"
               style={{ width: "auto", flexGrow: 1 }}
@@ -111,7 +134,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               <option value={3}>Assignee 3</option>
               <option value={4}>Assignee 4</option>
               <option value={5}>Assignee 5</option>
-            </select>
+            </select> */}
           </div>
         </div>
       </div>
@@ -132,7 +155,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         <div className="col-sm-10">
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            id="description"
             rows={3}
             placeholder={description}
           ></textarea>
