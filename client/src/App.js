@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "./components/features/application/components/workArea/components/layout/Layout";
-import "./css/test.css";
 import Task from "./components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/Task";
 
 function App() {

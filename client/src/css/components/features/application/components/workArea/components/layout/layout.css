@@ -42,6 +42,10 @@ a:focus {
   #sidebar ul li a:hover {
     color: #7386d5;
     background-color: #ffffff; }
+  #sidebar ul li.active > a,
+  #sidebar ul a[aria-expanded="true"] {
+    color: #ffffff;
+    background-color: #6d7fcc; }
 
 #sidebar.active {
   margin-left: -250px; }

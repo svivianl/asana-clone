@@ -46,15 +46,22 @@ a:focus {
       padding: 10px;
     }
 
-    li a {
-      padding: 10px;
-      font-size: 1.1em;
-      display: block;
+    li {
+      a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+      }
+      a:hover {
+        color: #7386d5;
+        background-color: #ffffff;
+      }
     }
 
-    li a:hover {
-      color: #7386d5;
-      background-color: #ffffff;
+    li.active > a,
+    a[aria-expanded="true"] {
+      color: #ffffff;
+      background-color: #6d7fcc;
     }
   }
 }
