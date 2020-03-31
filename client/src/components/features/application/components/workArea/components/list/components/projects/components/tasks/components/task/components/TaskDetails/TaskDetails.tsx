@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 
+interface Assignee {
+  id: string;
+  name: string;
+  job: string;
+  about: string;
+  phone: string;
+  userName: string;
+  email: string;
+  image: string;
+  country: string;
+}
 interface Task {
   id: string;
   assignee: string;
@@ -31,9 +43,10 @@ const taskInitialValues: Task = {
 };
 
 const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
-  const [assignee, setAssignee] = useState(task.assignee);
+  const [assignee, setAssignee] = useState({} as Assignee);
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
+
   const {
     // id,
     title,
@@ -43,13 +56,16 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     project
   } = task;
 
-  // useEffect(() => {
-
-  // }, [])
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    setAssignee({} as Assignee);
+  }, [task.assignee]);
+
+  const name = (assignee && assignee.name) || "";
+  const assigneeButton = name || "Select an assignee";
 
   return (
     <form className="ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
@@ -93,48 +109,18 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
                 src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
               />
             </div>
-            <div className="dropdown">
-              <button
-                className="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Assignee
-              </button>
-              <div className="dropdown-menu" aria-labelledby="assignee">
-                <a className="dropdown-item" href="#">
-                  Select an Assignee
-                </a>
-                <a className="dropdown-item" href="#">
-                  Assignee 1
-                </a>
-                <a className="dropdown-item" href="#">
-                  Assignee 2
-                </a>
-                <a className="dropdown-item" href="#">
-                  Assignee 3
-                </a>
-              </div>
-            </div>
-            {/* <select
-              className="form-control"
-              id="assignee"
-              style={{ width: "auto", flexGrow: 1 }}
-              value={assignee}
-              onChange={(data: any) => {
-                setAssignee(data.target.value);
+            <DropdownButton
+              title={assigneeButton}
+              variant="secondary"
+              id="assigneeButton"
+              onSelect={(assigneeId: string) => {
+                // setAssignee(data.target.value);
               }}
             >
-              <option value={0}>Select an Assignee</option>
-              <option value={1}>Assignee 1</option>
-              <option value={assignee}>Assignee 2</option>
-              <option value={3}>Assignee 3</option>
-              <option value={4}>Assignee 4</option>
-              <option value={5}>Assignee 5</option>
-            </select> */}
+              <Dropdown.Item eventKey="1">Assignee 1</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Assignee 2</Dropdown.Item>
+              <Dropdown.Item eventKey="3">Assignee 3</Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
       </div>
