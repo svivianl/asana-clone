@@ -1,31 +1,18 @@
 import React, { useEffect, useState } from "react";
+import {
+  useDispatch
+  //  useSelector
+} from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-
-interface Assignee {
-  id: string;
-  name: string;
-  job: string;
-  about: string;
-  phone: string;
-  userName: string;
-  email: string;
-  image: string;
-  country: string;
-}
-interface Task {
-  id: string;
-  assignee: string;
-  title: string;
-  description: string;
-  status: string;
-  dueDate: Date;
-  creationDate: Date;
-  project: string;
-}
+import {
+  Assignee,
+  Task
+} from "../../../../../../../../../../../../../../../types";
+import * as store from "./store/taskDetails.store";
 
 interface TaskDetailsProps {
   task?: Task;
@@ -46,6 +33,9 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   const [assignee, setAssignee] = useState({} as Assignee);
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
+  // const dispatch = useDispatch();
+  // const assignees = useSelector(store.getAssignees);
+  // const isLoading = useSelector(store.getIsLoading);
 
   const {
     // id,
@@ -63,6 +53,10 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   useEffect(() => {
     setAssignee({} as Assignee);
   }, [task.assignee]);
+
+  // useEffect(() => {
+  //   store.getAssignees(dispatch);
+  // }, []);
 
   const name = (assignee && assignee.name) || "";
   const assigneeButton = name || "Select an assignee";
