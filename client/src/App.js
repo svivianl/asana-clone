@@ -17,9 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="h1-sass">Helloooooooooooo</h1>
       <Layout />
-      <Task task={task} />
+      {/* <Task task={task} /> */}
     </div>
   );
 }
