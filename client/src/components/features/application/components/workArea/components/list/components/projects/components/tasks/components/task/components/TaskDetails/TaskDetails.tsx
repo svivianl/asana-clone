@@ -12,7 +12,8 @@ import {
   Assignee,
   Task
 } from "../../../../../../../../../../../../../../../types";
-import * as store from "./store/taskDetails.store";
+// import * as store from "./store/taskDetails.store";
+import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
   task?: Task;
@@ -62,12 +63,12 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   const assigneeButton = name || "Select an assignee";
 
   return (
-    <form className="ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
+    <form className="form-full-width ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
       <div className="form-group row">
         <label className="col-sm-2 col-form-label" htmlFor="title">
           Title
         </label>
-        <div className="col-sm-12">
+        <div className="col-sm-10">
           <input
             type="text"
             className="form-control"
@@ -81,7 +82,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         <label className="col-sm-2 col-form-label" htmlFor="dueDate">
           Due date
         </label>
-        <div className="col-sm-12">
+        <div className="col-sm-8">
           <SingleDatePicker
             date={dueDate} // momentPropTypes.momentObj or null
             onDateChange={(date: any) => setDueDate(date)} // PropTypes.func.isRequired
@@ -136,7 +137,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
           <textarea
             className="form-control"
             id="description"
-            rows={3}
+            rows={10}
             placeholder={description}
           ></textarea>
         </div>
