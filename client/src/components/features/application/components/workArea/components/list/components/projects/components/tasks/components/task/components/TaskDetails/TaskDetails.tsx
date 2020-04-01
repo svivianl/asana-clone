@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  useDispatch
-  //  useSelector
-} from "react-redux";
+// import {
+//   useDispatch
+//   //  useSelector
+// } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -99,6 +99,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               <img
                 style={{ width: "40px", height: "40px", borderRadius: "50%" }}
                 src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
+                alt={name}
               />
             </div>
             <DropdownButton
