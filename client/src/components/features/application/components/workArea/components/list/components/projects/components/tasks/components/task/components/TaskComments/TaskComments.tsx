@@ -1,5 +1,5 @@
 import React from "react";
-import { Task } from "../../Task";
+import { Task } from "../../../../../../../../../../../../../../../types";
 import moment from "moment";
 
 const Description = ({ assignee, creationDate }: Task) => {
