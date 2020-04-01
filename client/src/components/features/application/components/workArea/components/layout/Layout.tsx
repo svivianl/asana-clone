@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../../../../../../css/components/features/application/components/workArea/components/layout/layout.css";
-import Task from "../list/components/projects/components/tasks/components/task/Task";
+import TaskView from "../list/components/projects/components/tasks/components/task/TaskView";
 import Toolbar from "./components/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
@@ -36,7 +36,8 @@ const Layout = () => {
         <Backdrop backdropClickHandler={backdropClickHandler} />
       )}
       <main style={{ marginTop: "64px" }}>
-        <p>This is the page content!</p>
+        {/* <p>This is the page content!</p> */}
+        <TaskView task={task} />
       </main>
     </div>
   );
