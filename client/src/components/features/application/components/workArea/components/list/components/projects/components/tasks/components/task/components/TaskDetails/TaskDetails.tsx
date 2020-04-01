@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
+import {
+  useDispatch
+  //  useSelector
+} from "react-redux";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-
-interface Task {
-  id: string;
-  assignee: string;
-  title: string;
-  description: string;
-  status: string;
-  dueDate: Date;
-  creationDate: Date;
-  project: string;
-}
+import {
+  Assignee,
+  Task
+} from "../../../../../../../../../../../../../../../types";
+// import * as store from "./store/taskDetails.store";
+import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
   task?: Task;
@@ -31,9 +31,13 @@ const taskInitialValues: Task = {
 };
 
 const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
-  const [assignee, setAssignee] = useState(task.assignee);
+  const [assignee, setAssignee] = useState({} as Assignee);
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
+  // const dispatch = useDispatch();
+  // const assignees = useSelector(store.getAssignees);
+  // const isLoading = useSelector(store.getIsLoading);
+
   const {
     // id,
     title,
@@ -43,18 +47,28 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     project
   } = task;
 
-  // useEffect(() => {
-
-  // }, [])
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    setAssignee({} as Assignee);
+  }, [task.assignee]);
+
+  // useEffect(() => {
+  //   store.getAssignees(dispatch);
+  // }, []);
+
+  const name = (assignee && assignee.name) || "";
+  const assigneeButton = name || "Select an assignee";
+
   return (
-    <form className="ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
+    <form className="form-full-width ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
       <div className="form-group row">
-        <div className="col-sm-12">
+        <label className="col-sm-2 col-form-label" htmlFor="title">
+          Title
+        </label>
+        <div className="col-sm-10">
           <input
             type="text"
             className="form-control"
@@ -65,13 +79,10 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         </div>
       </div>
       <div className="form-group row">
-        <label
-          className="col-sm-2 col-form-label"
-          htmlFor="exampleFormControlSelect1"
-        >
+        <label className="col-sm-2 col-form-label" htmlFor="dueDate">
           Due date
         </label>
-        <div className="col-sm-12">
+        <div className="col-sm-8">
           <SingleDatePicker
             date={dueDate} // momentPropTypes.momentObj or null
             onDateChange={(date: any) => setDueDate(date)} // PropTypes.func.isRequired
@@ -82,10 +93,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         </div>
       </div>
       <div className="form-group row">
-        <label
-          className="col-sm-2 col-form-label"
-          htmlFor="exampleFormControlSelect1"
-        >
+        <label className="col-sm-2 col-form-label" htmlFor="assignee">
           Assignee
         </label>
         <div className="col-sm-10">
@@ -96,22 +104,18 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
                 src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
               />
             </div>
-            <select
-              className="form-control"
-              id="assignee"
-              style={{ width: "auto", flexGrow: 1 }}
-              value={assignee}
-              onChange={(data: any) => {
-                setAssignee(data.target.value);
+            <DropdownButton
+              title={assigneeButton}
+              variant="secondary"
+              id="assigneeButton"
+              onSelect={(assigneeId: string) => {
+                // setAssignee(data.target.value);
               }}
             >
-              <option value={0}>Select an Assignee</option>
-              <option value={1}>Assignee 1</option>
-              <option value={assignee}>Assignee 2</option>
-              <option value={3}>Assignee 3</option>
-              <option value={4}>Assignee 4</option>
-              <option value={5}>Assignee 5</option>
-            </select>
+              <Dropdown.Item eventKey="1">Assignee 1</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Assignee 2</Dropdown.Item>
+              <Dropdown.Item eventKey="3">Assignee 3</Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
       </div>
@@ -132,8 +136,8 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
         <div className="col-sm-10">
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
-            rows={3}
+            id="description"
+            rows={10}
             placeholder={description}
           ></textarea>
         </div>

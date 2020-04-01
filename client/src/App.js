@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "./components/features/application/components/workArea/components/layout/Layout";
 import "./css/test.css";
-import Task from "./components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/Task";
+import TaskView from "./components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/TaskView";
 
 function App() {
   const task = {
@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <h1 className="h1-sass">Helloooooooooooo</h1>
       <Layout />
-      <Task task={task} />
+      <TaskView task={task} />
     </div>
   );
 }
