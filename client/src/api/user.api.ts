@@ -1,11 +1,14 @@
-import { http, getCancelTokenSource, isRequestCancellation } from "./http/http";
+import {
+  http,
+  getCancelTokenSource //, isRequestCancellation
+} from "./http/http";
 import { User } from "../types/User";
 
 const apiUrl = (path: string = "") => {
   return `/users${path}`;
 };
 
-export const getApplicationNote = async (): Promise<User[]> => {
+export const getUsers = async (): Promise<User[]> => {
   const source = getCancelTokenSource();
   const config = {
     cancelToken: source.token

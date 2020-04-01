@@ -1,43 +1,18 @@
 import { ActionType, getType } from "typesafe-actions";
 import { TaskDetailsActionsTypes } from "./taskDetails.actions";
 import * as TaskDetailsActions from "./taskDetails.actions";
-import { User } from "../../../../../../../../../../../../../../../../types";
-
-type StatusType = "saved" | "updated" | "error";
-
-type MessageErrorType = "load-assignee" | "load-assignees";
-
-interface MessageError {
-  type: MessageErrorType;
-  message: string;
-}
-
-interface StatusMessageType {
-  type: StatusType;
-  error?: MessageError;
-}
-
-interface TaskDetailsState {
-  isLoading: boolean;
-  assignee: User;
-  assignees: User[];
-  status: null | StatusMessageType;
-}
-
-const createtaskDetailsState = () => {
-  return {
-    isLoading: false,
-    assignee: {} as User,
-    assignees: [],
-    status: null
-  };
-};
+import {
+  TaskDetailsState,
+  MessageError,
+  createtaskDetailsState
+} from "../types";
 
 export const taskDetailsReducer = (
   state: TaskDetailsState = createtaskDetailsState(),
-  action: ActionType<typeof TaskDetailsActionsTypes>
+  action: ActionType<typeof TaskDetailsActionsTypes | any>
 ): TaskDetailsState => {
   const { type, payload } = action;
+  console.log("action", action);
   switch (type) {
     case getType(TaskDetailsActions.getAssignee):
       return { ...state, isLoading: true };

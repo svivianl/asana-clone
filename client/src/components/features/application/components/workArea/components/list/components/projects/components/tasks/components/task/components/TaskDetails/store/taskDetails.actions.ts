@@ -17,6 +17,7 @@ export const getAssignee = createStandardAction(
 interface AssigneeAction {
   (assignee: User): any;
 }
+
 export const getAssigneeSuccess = createStandardAction(
   TaskDetailsActionsTypes.AssigneeSuccess,
   action => (assignee: User) => action(assignee)
@@ -32,8 +33,9 @@ export const getAssigneeError = createStandardAction(
 )<MessageError, undefined>();
 
 export const getAssignees = createStandardAction(
-  TaskDetailsActionsTypes.Assignees
-)<undefined>();
+  TaskDetailsActionsTypes.Assignees,
+  action => () => action()
+)<any, undefined>();
 
 interface AssigneesAction {
   (assignees: User[]): any;

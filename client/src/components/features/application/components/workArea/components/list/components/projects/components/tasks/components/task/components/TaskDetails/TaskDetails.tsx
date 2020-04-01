@@ -9,7 +9,7 @@ import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { User, Task } from "../../../../../../../../../../../../../../../types";
-// import * as store from "./store/taskDetails.store";
+import * as store from "./store/taskDetails.store";
 import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
@@ -31,7 +31,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   const [assignee, setAssignee] = useState({} as User);
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const assignees = useSelector(store.getAssignees);
   // const isLoading = useSelector(store.getIsLoading);
 
@@ -52,9 +52,10 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     setAssignee({} as User);
   }, [task.assignee]);
 
-  // useEffect(() => {
-  //   store.getAssignees(dispatch);
-  // }, []);
+  useEffect(() => {
+    console.log("useeffect");
+    store.getAssignees(dispatch);
+  }, []);
 
   const name = (assignee && assignee.name) || "";
   const assigneeButton = name || "Select an assignee";
