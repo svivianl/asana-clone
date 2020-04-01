@@ -1,5 +1,5 @@
 import { createAction as createStandardAction } from "typesafe-actions";
-import { Assignee } from "../../../../../../../../../../../../../../../../types";
+import { User } from "../../../../../../../../../../../../../../../../types";
 
 export enum TaskDetailsActionsTypes {
   Assignee = "taskDetails/Assignee",
@@ -15,11 +15,11 @@ export const getAssignee = createStandardAction(
 )<undefined>();
 
 interface AssigneeAction {
-  (assignee: Assignee): any;
+  (assignee: User): any;
 }
 export const getAssigneeSuccess = createStandardAction(
   TaskDetailsActionsTypes.AssigneeSuccess,
-  action => (assignee: Assignee) => action(assignee)
+  action => (assignee: User) => action(assignee)
 )<AssigneeAction, undefined>();
 
 interface MessageError {
@@ -36,11 +36,11 @@ export const getAssignees = createStandardAction(
 )<undefined>();
 
 interface AssigneesAction {
-  (assignees: Assignee[]): any;
+  (assignees: User[]): any;
 }
 export const getAssigneesSuccess = createStandardAction(
   TaskDetailsActionsTypes.AssigneesSuccess,
-  action => (assignees: Assignee[]) => action(assignees)
+  action => (assignees: User[]) => action(assignees)
 )<AssigneesAction, undefined>();
 
 export const getAssigneesError = createStandardAction(
