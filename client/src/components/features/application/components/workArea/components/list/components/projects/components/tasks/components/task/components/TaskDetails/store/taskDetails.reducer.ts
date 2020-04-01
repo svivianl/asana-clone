@@ -1,7 +1,7 @@
 import { ActionType, getType } from "typesafe-actions";
 import { TaskDetailsActionsTypes } from "./taskDetails.actions";
 import * as TaskDetailsActions from "./taskDetails.actions";
-import { Assignee } from "../../../../../../../../../../../../../../../../types";
+import { User } from "../../../../../../../../../../../../../../../../types";
 
 type StatusType = "saved" | "updated" | "error";
 
@@ -19,15 +19,15 @@ interface StatusMessageType {
 
 interface TaskDetailsState {
   isLoading: boolean;
-  assignee: Assignee;
-  assignees: Assignee[];
+  assignee: User;
+  assignees: User[];
   status: null | StatusMessageType;
 }
 
 const createtaskDetailsState = () => {
   return {
     isLoading: false,
-    assignee: {} as Assignee,
+    assignee: {} as User,
     assignees: [],
     status: null
   };
