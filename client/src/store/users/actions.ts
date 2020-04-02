@@ -1,52 +1,42 @@
-import { createAction as createStandardAction } from "typesafe-actions";
+import { createAction } from "typesafe-actions";
 import { User } from "../../types";
 
 export enum UsersActionsTypes {
-  GetUser = "users/GetUser",
-  GetUserSuccess = "users/GetUserSuccess",
-  GetUserError = "users/GetUserError",
+  // GetUser = "users/GetUser",
+  // GetUserSuccess = "users/GetUserSuccess",
+  // GetUserError = "users/GetUserError",
   GetUsers = "users/GetUsers",
   GetUsersSuccess = "users/GetUsersSuccess",
-  GetUsersError = "users/GetUsersError"
+  GetUsersError = "users/GetUsersError",
+  GetUsersCancel = "users/GetUsersCancel"
 }
 
-export const getUser = createStandardAction(UsersActionsTypes.GetUser)<
-  undefined
->();
+// export const getUser = createAction(UsersActionsTypes.GetUser)<
+//   undefined
+// >();
 
-interface GetUserAction {
-  (GetUser: User): any;
-}
+// export const getUserSuccess = createAction(
+//   UsersActionsTypes.GetUserSuccess,
+//   action => (user: User) => action(user)
+// )();
 
-export const getUserSuccess = createStandardAction(
-  UsersActionsTypes.GetUserSuccess,
-  action => (GetUser: User) => action(GetUser)
-)<GetUserAction, undefined>();
+// export const getUserError = createAction(
+//   UsersActionsTypes.GetUserError,
+//   action => (error: Error) =>
+//     action({ message: error.message, type: "get-GetUser" })
+// )>();
 
-interface MessageError {
-  (error: Error): any;
-}
-export const getUserError = createStandardAction(
-  UsersActionsTypes.GetUserError,
-  action => (error: Error) =>
-    action({ message: error.message, type: "get-GetUser" })
-)<MessageError, undefined>();
+export const getUsers = createAction(UsersActionsTypes.GetUsers)<undefined>();
 
-export const getUsers = createStandardAction(
-  UsersActionsTypes.GetUsers,
-  action => () => action()
-)<any, undefined>();
-
-interface GetUsersAction {
-  (GetUsers: User[]): any;
-}
-export const getUsersSuccess = createStandardAction(
+export const getUsersSuccess = createAction(
   UsersActionsTypes.GetUsersSuccess,
-  action => (GetUsers: User[]) => action(GetUsers)
-)<GetUsersAction, undefined>();
+  action => (users: User[]) => action(users)
+)();
 
-export const getUsersError = createStandardAction(
+export const getUsersError = createAction(
   UsersActionsTypes.GetUsersError,
   action => (error: Error) =>
-    action({ message: error.message, type: "get-GetUsers" })
-)<MessageError, undefined>();
+    action({ message: error.message, type: "get-users" })
+)();
+
+export const getUsersCancel = createAction(UsersActionsTypes.GetUsersCancel)();
