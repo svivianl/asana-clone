@@ -12,6 +12,7 @@ const Description = ({ assignee, creationDate }: Task) => {
           className="mr-2"
           style={{ width: "30px", height: "30px", borderRadius: "50%" }}
           src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
+          alt="user1"
         />
         <p className="h5 mb-0 mr-2">{assignee} created this task</p>
         <small className="text-muted">{createdAt}</small>
@@ -22,11 +23,13 @@ const Description = ({ assignee, creationDate }: Task) => {
           className="mr-1"
           style={{ width: "25px", height: "25px", borderRadius: "50%" }}
           src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
+          alt="user2"
         />
         <img
           className="mr-1"
           style={{ width: "25px", height: "25px", borderRadius: "50%" }}
           src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
+          alt="user3"
         />
         <div
           style={{ width: "25px", height: "25px" }}
