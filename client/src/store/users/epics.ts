@@ -21,10 +21,7 @@ const getUsersEpic: Epic<Action, Action, RootState> = action$ =>
     switchMap(() =>
       from(api.getUsers$()).pipe(
         takeUntil(filterAction(action$, actions.getUsersCancel)),
-        map(users => {
-          console.log("users: ", users);
-          return actions.getUsersSuccess(users);
-        }),
+        map(users => actions.getUsersSuccess(users)),
         catchError(error => {
           console.error("error: ", error);
           return of(actions.getUsersError(error));

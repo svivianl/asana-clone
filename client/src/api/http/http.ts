@@ -26,7 +26,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => response.data,
   error => {
-    console.log("error.response", error);
     return error.response
       ? parseError({ messages: error.response.data })
       : Promise.reject(error);

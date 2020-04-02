@@ -30,13 +30,12 @@ export const getUsers = createAction(UsersActionsTypes.GetUsers)<undefined>();
 
 export const getUsersSuccess = createAction(
   UsersActionsTypes.GetUsersSuccess,
-  action => (users: User[]) => action(users)
+  (users: User[]) => users
 )();
 
 export const getUsersError = createAction(
   UsersActionsTypes.GetUsersError,
-  action => (error: Error) =>
-    action({ message: error.message, type: "get-users" })
+  (error: Error) => ({ message: error.message, type: "get-users" })
 )();
 
 export const getUsersCancel = createAction(UsersActionsTypes.GetUsersCancel)();

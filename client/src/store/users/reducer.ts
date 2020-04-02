@@ -15,9 +15,6 @@ export const usersReducer = (
     // case getType(UsersActions.getUserSuccess):
     // return { ...state, user: payload, isLoading: false, status: null };
     case getType(UsersActions.getUsersSuccess):
-      console.log("payload: ", payload);
-      const { users } = payload;
-      console.log("reducer users: ", users);
       return { ...state, users: payload, isLoading: false, status: null };
     // case getType(UsersActions.getUserError):
     case getType(UsersActions.getUsersError):
