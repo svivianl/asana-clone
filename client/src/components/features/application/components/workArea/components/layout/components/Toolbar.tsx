@@ -5,7 +5,29 @@ import SideDrawerButton from "./SideDrawer/SideDrawerButton";
 
 const Toolbar = ({ drawerToggleClickHandler }: any) => {
   return (
-    <header className="toolbar">
+    <nav className="navbar navbar-light bg-dark">
+      <div className="toolbar-toogle-button">
+        <SideDrawerButton drawerToggleClickHandler={drawerToggleClickHandler} />
+      </div>
+      <a className="navbar-brand" href="#">
+        LOGO
+      </a>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">One of three columns</div>
+        </div>
+        <div className="row">
+          <div className="col-sm">One of three columns</div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Toolbar;
+
+{
+  /* <header className="toolbar">
       <nav className="toolbar-navigation">
         <div className="toolbar-toggle-button">
           <SideDrawerButton
@@ -27,8 +49,5 @@ const Toolbar = ({ drawerToggleClickHandler }: any) => {
           </ul>
         </div>
       </nav>
-    </header>
-  );
-};
-
-export default Toolbar;
+    </header> */
+}

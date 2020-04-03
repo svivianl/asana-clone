@@ -38,9 +38,3 @@
 .sidedrawer.open {
   transform: translateX(0);
 }
-
-@media (min-width: 769px) {
-  .sidedrawer {
-    display: none;
-  }
-}
