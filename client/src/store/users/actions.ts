@@ -26,7 +26,7 @@ export enum UsersActionsTypes {
 //     action({ message: error.message, type: "get-GetUser" })
 // )>();
 
-export const getUsers = createAction(UsersActionsTypes.GetUsers)<undefined>();
+export const getUsers = createAction(UsersActionsTypes.GetUsers)();
 
 export const getUsersSuccess = createAction(
   UsersActionsTypes.GetUsersSuccess,
