@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  useDispatch
-  //  useSelector
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -32,8 +29,9 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
   const dispatch = useDispatch();
-  // const assignees = useSelector(store.getAssignees);
-  // const isLoading = useSelector(store.getIsLoading);
+  const assignees = useSelector(store.userSelectors.getUsers);
+  const isLoading = useSelector(store.userSelectors.getIsLoading);
+  console.log("TaskDetails -> isLoading", isLoading);
 
   const {
     // id,
@@ -107,12 +105,18 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               variant="secondary"
               id="assigneeButton"
               onSelect={(assigneeId: string) => {
-                // setAssignee(data.target.value);
+                const selectedAssignee = assignees.filter(
+                  assignee => assignee.id === assigneeId
+                );
+                setAssignee(selectedAssignee[0]);
               }}
             >
-              <Dropdown.Item eventKey="1">Assignee 1</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Assignee 2</Dropdown.Item>
-              <Dropdown.Item eventKey="3">Assignee 3</Dropdown.Item>
+              {assignees &&
+                assignees.map(assignee => (
+                  <Dropdown.Item key={assignee.id} eventKey={assignee.id}>
+                    {assignee.name}
+                  </Dropdown.Item>
+                ))}
             </DropdownButton>
           </div>
         </div>

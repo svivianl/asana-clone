@@ -16,7 +16,7 @@ const filterAction = (
 const getUsersEpic: Epic<Action, Action, RootState> = action$ =>
   action$.pipe(
     filter(isActionOf(actions.getUsers)),
-    map(action => action),
+    // map(action => action),
     // map(action => action.payload),
     switchMap(() =>
       from(api.getUsers$()).pipe(

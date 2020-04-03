@@ -12,5 +12,5 @@ export interface RootState {
 export const createRootReducer = (history: History) =>
   combineReducers({
     router: connectRouter(history),
-    users: usersReducer
+    usersState: usersReducer
   });
