@@ -7,7 +7,7 @@ import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { User, Task } from "../../../../../../../../../../../../../../../types";
 import * as store from "../../../../../../../../../../../../../../../store/users/store";
-import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
+import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
   task?: Task;
@@ -21,7 +21,7 @@ const taskInitialValues: Task = {
   status: "",
   dueDate: new Date(),
   creationDate: new Date(),
-  project: ""
+  project: "",
 };
 
 const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
@@ -39,7 +39,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     description,
     // status,
     // creationDate,
-    project
+    project,
   } = task;
 
   const handleSubmit = (e: any) => {
@@ -106,13 +106,13 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               id="assigneeButton"
               onSelect={(assigneeId: string) => {
                 const selectedAssignee = assignees.filter(
-                  assignee => assignee.id === assigneeId
+                  (assignee) => assignee.id === assigneeId
                 );
                 setAssignee(selectedAssignee[0]);
               }}
             >
               {assignees &&
-                assignees.map(assignee => (
+                assignees.map((assignee) => (
                   <Dropdown.Item key={assignee.id} eventKey={assignee.id}>
                     {assignee.name}
                   </Dropdown.Item>

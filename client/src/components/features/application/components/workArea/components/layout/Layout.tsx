@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../../../../../../css/components/features/application/components/workArea/components/layout/layout.css";
+import "../../../../../../../css/features/application/components/workArea/components/layout/layout.css";
 import TaskView from "../list/components/projects/components/tasks/components/task/TaskView";
 import Toolbar from "./components/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
@@ -17,7 +17,7 @@ const Layout = () => {
     title: "ea aut doloribus",
     description:
       "Iusto dolor dolore vel tempora aut nihil et. Sequi dolorem doloribus quidem culpa explicabo. Asperiores nesciunt eveniet ut vitae et sint natus. Reiciendis sunt qui quae.",
-    project: "0cab7ecc-9409-4ebf-8b18-72b523abe9de"
+    project: "0cab7ecc-9409-4ebf-8b18-72b523abe9de",
   };
 
   const drawerToggleClickHandler = () => {
