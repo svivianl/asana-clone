@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../../../../../../../css/components/features/application/components/workArea/components/layout/components/SideDrawer/SideDrawerButton.css";
+import "../../../../../../../../../css/features/application/components/workArea/components/layout/components/SideDrawer/SideDrawerButton.css";
 
 const SideDrawerButton = ({ drawerToggleClickHandler }: any) => {
   return (

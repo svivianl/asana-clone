@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../../../../../../css/components/features/application/components/workArea/components/layout/components/Toolbar.css";
+import "../../../../../../../../css/features/application/components/workArea/components/layout/components/Toolbar.css";
 import "./SideDrawer/SideDrawerButton";
 import SideDrawerButton from "./SideDrawer/SideDrawerButton";
 
