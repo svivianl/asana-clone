@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -28,7 +28,6 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   const [assignee, setAssignee] = useState({} as User);
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
-  const dispatch = useDispatch();
   const assignees = useSelector(store.userSelectors.getUsers);
   const isLoading = useSelector(store.userSelectors.getIsLoading);
   console.log("TaskDetails -> isLoading", isLoading);
@@ -42,7 +41,10 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     project,
   } = task;
 
-  const handleSubmit = (e: any) => {
+  const handleChange = (e: any) => {
+    const { id, value } = e.target;
+    console.log("handleChange -> {id, value}: ", { id, value });
+
     e.preventDefault();
   };
 
@@ -50,15 +52,11 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     setAssignee({} as User);
   }, [task.assignee]);
 
-  useEffect(() => {
-    store.getUsers(dispatch)();
-  }, []);
-
   const name = (assignee && assignee.name) || "";
   const assigneeButton = name || "Select an assignee";
 
   return (
-    <form className="form-full-width ml-0 mt-3 mb-3" onSubmit={handleSubmit}>
+    <form className="form-full-width ml-0 mt-3 mb-3" onChange={handleChange}>
       <div className="form-group row">
         <label className="col-sm-2 col-form-label" htmlFor="title">
           Title

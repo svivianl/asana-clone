@@ -1,5 +1,4 @@
-export interface Task {
-  id: string;
+export interface CreateTask {
   assignee: string;
   title: string;
   description: string;
@@ -7,4 +6,8 @@ export interface Task {
   dueDate: Date;
   creationDate: Date;
   project: string;
+}
+
+export interface Task extends CreateTask {
+  id: string;
 }
