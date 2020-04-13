@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  useDispatch
-  //  useSelector
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-import {
-  Assignee,
-  Task
-} from "../../../../../../../../../../../../../../../types";
-// import * as store from "./store/taskDetails.store";
-import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
+import { User, Task } from "../../../../../../../../../../../../../../../types";
+import * as store from "../../../../../../../../../../../../../../../store/users/store";
+import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
   task?: Task;
@@ -27,16 +21,17 @@ const taskInitialValues: Task = {
   status: "",
   dueDate: new Date(),
   creationDate: new Date(),
-  project: ""
+  project: "",
 };
 
 const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
-  const [assignee, setAssignee] = useState({} as Assignee);
+  const [assignee, setAssignee] = useState({} as User);
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
-  // const dispatch = useDispatch();
-  // const assignees = useSelector(store.getAssignees);
-  // const isLoading = useSelector(store.getIsLoading);
+  const dispatch = useDispatch();
+  const assignees = useSelector(store.userSelectors.getUsers);
+  const isLoading = useSelector(store.userSelectors.getIsLoading);
+  console.log("TaskDetails -> isLoading", isLoading);
 
   const {
     // id,
@@ -44,7 +39,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     description,
     // status,
     // creationDate,
-    project
+    project,
   } = task;
 
   const handleSubmit = (e: any) => {
@@ -52,12 +47,12 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
   };
 
   useEffect(() => {
-    setAssignee({} as Assignee);
+    setAssignee({} as User);
   }, [task.assignee]);
 
-  // useEffect(() => {
-  //   store.getAssignees(dispatch);
-  // }, []);
+  useEffect(() => {
+    store.getUsers(dispatch)();
+  }, []);
 
   const name = (assignee && assignee.name) || "";
   const assigneeButton = name || "Select an assignee";
@@ -102,6 +97,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               <img
                 style={{ width: "40px", height: "40px", borderRadius: "50%" }}
                 src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
+                alt={name}
               />
             </div>
             <DropdownButton
@@ -109,12 +105,18 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               variant="secondary"
               id="assigneeButton"
               onSelect={(assigneeId: string) => {
-                // setAssignee(data.target.value);
+                const selectedAssignee = assignees.filter(
+                  (assignee) => assignee.id === assigneeId
+                );
+                setAssignee(selectedAssignee[0]);
               }}
             >
-              <Dropdown.Item eventKey="1">Assignee 1</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Assignee 2</Dropdown.Item>
-              <Dropdown.Item eventKey="3">Assignee 3</Dropdown.Item>
+              {assignees &&
+                assignees.map((assignee) => (
+                  <Dropdown.Item key={assignee.id} eventKey={assignee.id}>
+                    {assignee.name}
+                  </Dropdown.Item>
+                ))}
             </DropdownButton>
           </div>
         </div>
