@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../../../../../css/components/features/application/components/workArea/components/layout/layout.css";
-import TaskView from "../list/components/projects/components/tasks/components/task/TaskView";
+import Task from "../list/components/projects/components/tasks/components/task/Task";
 import Toolbar from "./components/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
@@ -36,7 +36,7 @@ const Layout = () => {
       )}
       <main style={{ marginTop: "64px" }}>
         {/* <p>This is the page content!</p> */}
-        <TaskView task={task} />
+        <Task task={task} />
       </main>
     </div>
   );
