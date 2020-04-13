@@ -1,4 +1,4 @@
-import React from "react"; //, { useEffect, useState }
+import React from "react";
 import TaskStatusBar from "./components/TaskStatusBar/TaskStatusBar";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 import TaskComment from "./components/TaskComments/TaskComments";
@@ -12,18 +12,16 @@ const taskInitialValues: Task = {
   status: "",
   dueDate: new Date(),
   creationDate: new Date(),
-  project: ""
+  project: "",
 };
 
 interface TaskProps {
   task?: Task;
 }
 const TaskView = ({ task = taskInitialValues }: TaskProps) => {
-  // const [assignee, setAssignee] = useState({})
-  // useEffect(() => {
-  // }, [])
-
   // task.creationDate -> 2020-03-25T13:58:46.655Z
+
+  const handleChange = ({ id, value }: any) => {};
 
   return (
     <div
@@ -31,7 +29,7 @@ const TaskView = ({ task = taskInitialValues }: TaskProps) => {
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "flex-start",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
       <div
@@ -40,7 +38,7 @@ const TaskView = ({ task = taskInitialValues }: TaskProps) => {
           alignItems: "flex-start",
           justifyContent: "flex-start",
           flexDirection: "column",
-          height: "100vh"
+          height: "100vh",
         }}
       >
         <TaskStatusBar />
