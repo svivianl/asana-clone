@@ -11,7 +11,6 @@ import { filterAction } from "../types";
 const getTasksEpic: Epic<Action, Action, RootState> = (action$) =>
   action$.pipe(
     filter(isActionOf(actions.getTasks)),
-    map(() => console.log("epic")),
     switchMap(() =>
       from(api.getTasks$()).pipe(
         takeUntil(filterAction(action$, actions.getTasksCancel)),

@@ -1,11 +1,11 @@
 export interface CreateTask {
-  assignee: string;
+  assigneeId: string;
   title: string;
   description: string;
-  status: string;
+  statusId: string;
   dueDate: Date;
   creationDate: Date;
-  project: string;
+  projectId: string;
 }
 
 export interface Task extends CreateTask {

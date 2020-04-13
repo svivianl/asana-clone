@@ -2,26 +2,20 @@ import React from "react";
 import TaskStatusBar from "./components/TaskStatusBar/TaskStatusBar";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 import TaskComment from "./components/TaskComments/TaskComments";
-import { Task } from "../../../../../../../../../../../../../types";
-
-const taskInitialValues: Task = {
-  id: "",
-  assignee: "",
-  title: "",
-  description: "",
-  status: "",
-  dueDate: new Date(),
-  creationDate: new Date(),
-  project: "",
-};
+import { User, Task } from "../../../../../../../../../../../../../types";
+import { taskInitialValues } from "./types";
 
 interface TaskProps {
   task?: Task;
+  assignee?: User;
+  onChangeAssignee: (id: string) => void;
 }
-const TaskView = ({ task = taskInitialValues }: TaskProps) => {
+const TaskView = ({
+  task = taskInitialValues,
+  assignee,
+  onChangeAssignee,
+}: TaskProps) => {
   // task.creationDate -> 2020-03-25T13:58:46.655Z
-
-  const handleChange = ({ id, value }: any) => {};
 
   return (
     <div
@@ -42,8 +36,12 @@ const TaskView = ({ task = taskInitialValues }: TaskProps) => {
         }}
       >
         <TaskStatusBar />
-        <TaskDetails task={task} />
-        <TaskComment {...task} />
+        <TaskDetails
+          task={task}
+          assignee={assignee}
+          onChangeAssignee={onChangeAssignee}
+        />
+        <TaskComment task={task} assignee={assignee} />
       </div>
     </div>
   );

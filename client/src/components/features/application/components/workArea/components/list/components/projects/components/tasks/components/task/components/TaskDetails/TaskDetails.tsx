@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-import { User, Task } from "../../../../../../../../../../../../../../../types";
 import * as store from "../../../../../../../../../../../../../../../store/users/store";
-import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
+import { User, Task } from "../../../../../../../../../../../../../../../types";
+import { taskInitialValues } from "../../types";
+import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
-  task?: Task;
+  task: Task;
+  assignee?: User;
+  onChangeAssignee: (id: string) => void;
 }
 
-const taskInitialValues: Task = {
-  id: "",
-  assignee: "",
-  title: "",
-  description: "",
-  status: "",
-  dueDate: new Date(),
-  creationDate: new Date(),
-  project: "",
-};
-
-const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
-  const [assignee, setAssignee] = useState({} as User);
+const TaskDetails = ({
+  task = taskInitialValues,
+  assignee,
+  onChangeAssignee,
+}: TaskDetailsProps) => {
   const [dueDate, setDueDate] = useState(moment(task.dueDate));
   const [focused, setFocused] = useState(null);
   const assignees = useSelector(store.userSelectors.getUsers);
-  const isLoading = useSelector(store.userSelectors.getIsLoading);
-  console.log("TaskDetails -> isLoading", isLoading);
 
   const {
     // id,
@@ -38,7 +31,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
     description,
     // status,
     // creationDate,
-    project,
+    projectId,
   } = task;
 
   const handleChange = (e: any) => {
@@ -47,10 +40,6 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
 
     e.preventDefault();
   };
-
-  useEffect(() => {
-    setAssignee({} as User);
-  }, [task.assignee]);
 
   const name = (assignee && assignee.name) || "";
   const assigneeButton = name || "Select an assignee";
@@ -102,12 +91,8 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
               title={assigneeButton}
               variant="secondary"
               id="assigneeButton"
-              onSelect={(assigneeId: string) => {
-                const selectedAssignee = assignees.filter(
-                  (assignee) => assignee.id === assigneeId
-                );
-                setAssignee(selectedAssignee[0]);
-              }}
+              onSelect={(assigneeId: string) => onChangeAssignee(assigneeId)}
+              value={task.assigneeId}
             >
               {assignees &&
                 assignees.map((assignee) => (
@@ -127,7 +112,7 @@ const TaskDetails = ({ task = taskInitialValues }: TaskDetailsProps) => {
             className="form-control"
             id="project"
             placeholder="Project"
-            defaultValue={project}
+            defaultValue={projectId}
           />
         </div>
       </div>
