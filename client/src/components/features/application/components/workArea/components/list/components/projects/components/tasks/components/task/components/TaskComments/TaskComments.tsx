@@ -1,8 +1,14 @@
 import React from "react";
-import { Task } from "../../../../../../../../../../../../../../../types";
+import { User, Task } from "../../../../../../../../../../../../../../../types";
 import moment from "moment";
 
-const Description = ({ assignee, creationDate }: Task) => {
+interface TaskCommentsProps {
+  task: Task;
+  assignee?: User;
+}
+
+const Description = ({ task, assignee }: TaskCommentsProps) => {
+  const { creationDate } = task;
   const createdAt = moment(creationDate).fromNow();
 
   return (
@@ -14,7 +20,7 @@ const Description = ({ assignee, creationDate }: Task) => {
           src="https://cangeo-media-library.s3.amazonaws.com/s3fs-public/styles/web_article_slider_image/public/images/web_articles/article_images/3120/eastern_chipmunk.jpg?itok=vpESnz24"
           alt="user1"
         />
-        <p className="h5 mb-0 mr-2">{assignee} created this task</p>
+        <p className="h5 mb-0 mr-2">{assignee?.name} created this task</p>
         <small className="text-muted">{createdAt}</small>
       </div>
       <div className="row align-items-center p-3 pl-5 border border-dark border-top-0">

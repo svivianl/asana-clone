@@ -1,10 +1,13 @@
-export interface Task {
-  id: string;
-  assignee: string;
+export interface CreateTask {
+  assigneeId: string;
   title: string;
   description: string;
-  status: string;
+  statusId: string;
   dueDate: Date;
   creationDate: Date;
-  project: string;
+  projectId: string;
+}
+
+export interface Task extends CreateTask {
+  id: string;
 }
