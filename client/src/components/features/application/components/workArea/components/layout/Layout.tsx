@@ -31,7 +31,7 @@ const Layout = () => {
   return (
     <div style={{ height: "100vh" }}>
       <Toolbar drawerToggleClickHandler={drawerToggleClickHandler} />
-      <SideDrawer isSideDrawerOpen={isSideDrawerOpen} />}
+      <SideDrawer isSideDrawerOpen={isSideDrawerOpen} />
       {isSideDrawerOpen && (
         <Backdrop backdropClickHandler={backdropClickHandler} />
       )}
