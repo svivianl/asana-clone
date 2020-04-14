@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../../../../../../../css/components/features/application/components/workArea/components/layout/layout.css";
 import Task from "../list/components/projects/components/tasks/components/task/Task";
 import Toolbar from "./components/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
 import * as taskStore from "../list/components/projects/components/tasks/components/task/store/store";
+import "../../../../../../../css/features/application/components/workArea/components/layout/layout.css";
 
 const Layout = () => {
   const dispatch = useDispatch();

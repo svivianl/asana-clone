@@ -8,7 +8,7 @@ import moment from "moment";
 import * as store from "../../../../../../../../../../../../../../../store/users/store";
 import { User, Task } from "../../../../../../../../../../../../../../../types";
 import { taskInitialValues } from "../../types";
-import "../../../../../../../../../../../../../../../css/components/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
+import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 interface TaskDetailsProps {
   task: Task;
