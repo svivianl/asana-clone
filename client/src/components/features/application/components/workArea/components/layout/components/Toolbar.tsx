@@ -9,8 +9,12 @@ const Toolbar = ({ drawerToggleClickHandler }: any) => {
       <div className="toolbar-toogle-button">
         <SideDrawerButton drawerToggleClickHandler={drawerToggleClickHandler} />
       </div>
-      <a className="navbar-brand" href="/">
-        LOGO
+      <a href="/">
+        <img
+          src="./Logo_200x200.png"
+          alt="Asana Clone logo"
+          style={{ width: "auto", height: 70 }}
+        />
       </a>
       <div className="container-fluid ">
         <div className="container-fluid row">
