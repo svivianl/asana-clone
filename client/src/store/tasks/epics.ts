@@ -39,4 +39,23 @@ const getTaskEpic: Epic<Action, Action, RootState> = (action$) =>
     )
   );
 
-export default [getTasksEpic, getTaskEpic];
+// const putTaskEpic: Epic<Action, Action, RootState> = (action$) =>
+// action$.pipe(
+//   filter(isActionOf(actions.putTask)),
+//   switchMap(() =>
+//     from(api.putTask$()).pipe(
+//       takeUntil(filterAction(action$, actions.putTaskCancel)),
+//       map((task) => actions.putTaskSuccess(task)),
+//       catchError((error) => {
+//         console.error("error: ", error);
+//         return of(actions.putTaskError(error));
+//       })
+//     )
+//   )
+// );
+
+export default [
+  getTasksEpic,
+  getTaskEpic,
+  //putTaskEpic
+];

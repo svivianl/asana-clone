@@ -14,7 +14,7 @@ const Layout = () => {
   const task = useSelector(taskStore.userSelectors.getTask);
 
   useEffect(() => {
-    if (Object.keys(task).length === 0 && task.constructor === Object) {
+    if (!Object.keys(task).length && task.constructor === Object) {
       taskStore.getTasks(dispatch)();
     }
   }, []);
@@ -34,7 +34,7 @@ const Layout = () => {
       {isSideDrawerOpen && (
         <Backdrop backdropClickHandler={backdropClickHandler} />
       )}
-      <main style={{ marginTop: "64px" }}>
+      <main style={{ marginTop: "64px" }} className="mr-3">
         {/* <p>This is the page content!</p> */}
         <Task task={task} />
       </main>

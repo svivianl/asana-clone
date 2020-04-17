@@ -10,6 +10,10 @@ export enum TaskActionsTypes {
   GetTasksSuccess = "Task/GetTasksSuccess",
   GetTasksError = "Task/GetTasksError",
   GetTasksCancel = "Task/GetTasksCancel",
+  PutTask = "Task/PutTask",
+  PutTaskSuccess = "Task/PutTaskSuccess",
+  PutTaskError = "Task/PutTaskError",
+  PutTaskCancel = "Task/PutTaskCancel",
 }
 
 export const getTask = createAction(
@@ -42,3 +46,20 @@ export const getTasksError = createAction(
 )();
 
 export const getTasksCancel = createAction(TaskActionsTypes.GetTasksCancel)();
+
+export const putTask = createAction(
+  TaskActionsTypes.PutTask,
+  (taskBody: Task) => taskBody
+)();
+
+export const putTaskSuccess = createAction(
+  TaskActionsTypes.PutTaskSuccess,
+  (task: Task) => task
+)();
+
+export const putTaskError = createAction(
+  TaskActionsTypes.PutTaskError,
+  (error: Error) => ({ message: error.message, type: "load-task" })
+)();
+
+export const putTaskCancel = createAction(TaskActionsTypes.PutTaskCancel)();

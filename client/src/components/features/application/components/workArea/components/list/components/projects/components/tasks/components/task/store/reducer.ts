@@ -14,6 +14,9 @@ export const taskReducer = (
   const { type, payload } = action;
 
   switch (type) {
+    case getType(TaskActions.putTask):
+      const task = { ...state.task, ...payload };
+      return { ...state, task, isLoading: false, status: null };
     case getType(TaskActions.getTask):
     case getType(TaskActions.getTasks):
       return { ...state, isLoading: true };
