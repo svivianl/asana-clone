@@ -6,7 +6,7 @@ import { User, Task } from "../../../../../../../../../../../../../types";
 import { taskInitialValues } from "./types";
 
 interface TaskProps {
-  task?: Task;
+  task: Task;
   assignee?: User;
   onChangeAssignee: (id: string) => void;
 }
@@ -37,7 +37,7 @@ const TaskView = ({
       >
         <TaskStatusBar />
         <TaskDetails
-          task={task}
+          // task={task}
           assignee={assignee}
           onChangeAssignee={onChangeAssignee}
         />

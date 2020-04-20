@@ -9,14 +9,13 @@ import {
 import { taskInitialValues } from "./types";
 
 interface TaskProps {
-  task?: TaskType;
+  task: TaskType;
 }
 const Task = ({ task = taskInitialValues }: TaskProps) => {
   // task.creationDate -> 2020-03-25T13:58:46.655Z
   const [assignee, setAssignee] = useState({} as User);
   const assignees = useSelector(store.userSelectors.getUsers);
 
-  const handleChange = ({ id, value }: any) => {};
   const getAssignee = (id: string) => {
     const assigneesFound = assignees.filter((assignee) => assignee.id === id);
     return assigneesFound[0];
