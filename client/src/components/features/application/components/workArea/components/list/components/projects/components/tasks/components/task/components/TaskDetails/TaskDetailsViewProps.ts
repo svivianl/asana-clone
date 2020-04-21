@@ -1,3 +1,4 @@
+import { RawDraftContentState } from "draft-js";
 import { User, Task } from "../../../../../../../../../../../../../../../types";
 
 interface TaskDetailsViewProps {
@@ -11,6 +12,7 @@ interface TaskDetailsViewProps {
   onAssigneeChange: (assigneeId: string) => void;
   onFocusChange: ({ focused }: any) => void;
   onDueDateChange: (date: any) => void;
+  onDescriptionChange: (content: RawDraftContentState) => void;
 }
 
 export default TaskDetailsViewProps;

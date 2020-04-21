@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
+import {
+  EditorState,
+  convertFromRaw,
+  convertToRaw,
+  RawDraftContentState,
+  RawDraftContentBlock,
+  ContentState,
+} from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { taskInitialValues } from "../../types";
 import TaskDetailsViewProps from "./TaskDetailsViewProps";
 import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
@@ -18,8 +28,39 @@ const TaskDetailsView = ({
   onAssigneeChange,
   onFocusChange,
   onDueDateChange,
+  onDescriptionChange,
 }: TaskDetailsViewProps) => {
   const { title, description, projectId } = task;
+  const [editorState, setEditorState] = useState<EditorState>(
+    EditorState.createEmpty()
+  );
+  const [isToolbarHidden, setIsToolbarHidden] = useState(true);
+
+  // TODO: remove once backend id done
+  useEffect(() => {
+    if (description) {
+      let editor: RawDraftContentState;
+
+      if (typeof description === "string") {
+        const blocks: RawDraftContentBlock[] = [
+          {
+            key: "eej24",
+            text: description,
+            type: "unstyled",
+            depth: 0,
+            inlineStyleRanges: [],
+            entityRanges: [],
+          },
+        ];
+        editor = { blocks, entityMap: {} };
+      } else {
+        editor = description;
+      }
+      setEditorState(EditorState.createWithContent(convertFromRaw(editor)));
+      // setEditorState(convertFromRaw(JSON.parse(editor))))
+      // EditorState.createEmpty(decorator?: DraftDecoratorType): EditorState;
+    }
+  }, [task.id]);
 
   return (
     <form className="form-full-width ml-0 mt-3 mb-3">
@@ -100,13 +141,62 @@ const TaskDetailsView = ({
       <div className="form-group row">
         <label className="col-sm-2 col-form-label">Description</label>
         <div className="col-sm-10">
-          <textarea
+          {editorState && (
+            <Editor
+              toolbarClassName={isToolbarHidden ? "d-none" : undefined}
+              onFocus={() => {
+                setIsToolbarHidden(false);
+              }}
+              onBlur={() => {
+                setIsToolbarHidden(true);
+              }}
+              editorState={editorState}
+              wrapperClassName="wrapperClassName"
+              editorClassName="border rounded pl-2 pr-2"
+              onEditorStateChange={(editorState) => {
+                console.log(
+                  "editor: ",
+                  convertToRaw(editorState.getCurrentContent())
+                );
+                onDescriptionChange(
+                  convertToRaw(editorState.getCurrentContent())
+                );
+                setEditorState(editorState);
+              }}
+              toolbar={{
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+                // image: {
+                //   uploadCallback: uploadImageCallBack,
+                //   alt: { present: true, mandatory: true },
+                // },
+              }}
+              // mention={{
+              //   separator: " ",
+              //   trigger: "@",
+              //   suggestions: [
+              //     { text: "APPLE", value: "apple", url: "apple" },
+              //     { text: "BANANA", value: "banana", url: "banana" },
+              //     { text: "CHERRY", value: "cherry", url: "cherry" },
+              //     { text: "DURIAN", value: "durian", url: "durian" },
+              //     { text: "EGGFRUIT", value: "eggfruit", url: "eggfruit" },
+              //     { text: "FIG", value: "fig", url: "fig" },
+              //     { text: "GRAPEFRUIT", value: "grapefruit", url: "grapefruit" },
+              //     { text: "HONEYDEW", value: "honeydew", url: "honeydew" },
+              //   ],
+              // }}
+            />
+          )}
+          {/* <textarea
             className="form-control"
             id="description"
             rows={10}
             placeholder={description}
             onChange={onInputChange}
-          ></textarea>
+          ></textarea> */}
         </div>
       </div>
     </form>

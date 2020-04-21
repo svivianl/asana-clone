@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import moment from "moment";
+import { RawDraftContentState } from "draft-js";
 import * as userStore from "../../../../../../../../../../../../../../../store/users/store";
-import { taskInitialValues } from "../../types";
+// import { taskInitialValues } from "../../types";
 import TaskDetailsView from "./TaskDetailsView";
 import TaskDetailsProps from "./TaskDetailsProps";
 // import { Task } from "../../../../../../../../../../../../../../../types";
@@ -48,6 +49,10 @@ const TaskDetails = ({
     onChangeAssignee(assigneeId);
   };
 
+  const handleTextAreaChange = (content: RawDraftContentState) => {
+    handleTaskChange("description", content);
+  };
+
   const name = (assignee && assignee.name) || "";
   const assigneeButton = name || "Select an assignee";
 
@@ -63,6 +68,7 @@ const TaskDetails = ({
       onAssigneeChange={handleAssigneeChange}
       onFocusChange={({ focused }: any) => setFocused(focused)}
       onDueDateChange={handleDueDateChange}
+      onDescriptionChange={handleTextAreaChange}
     />
   );
 };
