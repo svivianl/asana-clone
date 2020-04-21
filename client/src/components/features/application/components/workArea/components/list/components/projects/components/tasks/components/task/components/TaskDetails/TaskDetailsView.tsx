@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import classNames from "classnames";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -115,7 +116,10 @@ const TaskDetailsView = ({
               onBlur={onEditorBlur}
               editorState={editorState}
               wrapperClassName="editor-wrapper"
-              editorClassName="border rounded pl-2 pr-2"
+              editorClassName={classNames(
+                "border rounded pl-2 pr-2",
+                isToolbarHidden ? undefined : "editor-focus"
+              )}
               onEditorStateChange={onDescriptionChange}
               toolbar={{
                 inline: { inDropdown: true },

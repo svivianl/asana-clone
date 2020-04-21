@@ -3,3 +3,7 @@
 
 .editor-wrapper {
   max-width: 31.25em; }
+
+.editor-focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: 0; }
