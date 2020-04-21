@@ -1,8 +1,11 @@
 import React from "react";
+import classNames from "classnames";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { taskInitialValues } from "../../types";
 import TaskDetailsViewProps from "./TaskDetailsViewProps";
 import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
@@ -14,12 +17,18 @@ const TaskDetailsView = ({
   dueDate,
   focused,
   assigneeButtonTitle,
+  editorState,
+  isToolbarHidden,
+  mentionSuggestions,
   onInputChange,
   onAssigneeChange,
   onFocusChange,
   onDueDateChange,
+  onDescriptionChange,
+  onEditorFocus,
+  onEditorBlur,
 }: TaskDetailsViewProps) => {
-  const { title, description, projectId } = task;
+  const { title, projectId } = task;
 
   return (
     <form className="form-full-width ml-0 mt-3 mb-3">
@@ -100,13 +109,36 @@ const TaskDetailsView = ({
       <div className="form-group row">
         <label className="col-sm-2 col-form-label">Description</label>
         <div className="col-sm-10">
-          <textarea
-            className="form-control"
-            id="description"
-            rows={10}
-            placeholder={description}
-            onChange={onInputChange}
-          ></textarea>
+          {editorState && (
+            <Editor
+              toolbarClassName={isToolbarHidden ? "d-none" : undefined}
+              onFocus={onEditorFocus}
+              onBlur={onEditorBlur}
+              editorState={editorState}
+              wrapperClassName="editor-wrapper"
+              editorClassName={classNames(
+                "border rounded pl-2 pr-2",
+                isToolbarHidden ? undefined : "editor-focus"
+              )}
+              onEditorStateChange={onDescriptionChange}
+              toolbar={{
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+                // image: {
+                //   uploadCallback: uploadImageCallBack,
+                //   alt: { present: true, mandatory: true },
+                // },
+              }}
+              mention={{
+                separator: " ",
+                trigger: "@",
+                suggestions: mentionSuggestions,
+              }}
+            />
+          )}
         </div>
       </div>
     </form>
