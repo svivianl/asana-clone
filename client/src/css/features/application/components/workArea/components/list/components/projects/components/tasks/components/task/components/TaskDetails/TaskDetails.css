@@ -1,2 +1,5 @@
 .form-full-width {
   width: 100%; }
+
+.editor-wrapper {
+  max-width: 31.25em; }

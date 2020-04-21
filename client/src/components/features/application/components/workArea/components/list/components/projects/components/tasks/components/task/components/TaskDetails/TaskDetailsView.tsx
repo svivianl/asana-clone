@@ -3,14 +3,6 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
-import {
-  EditorState,
-  convertFromRaw,
-  convertToRaw,
-  RawDraftContentState,
-  RawDraftContentBlock,
-  ContentState,
-} from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { taskInitialValues } from "../../types";
@@ -24,43 +16,18 @@ const TaskDetailsView = ({
   dueDate,
   focused,
   assigneeButtonTitle,
+  editorState,
+  isToolbarHidden,
+  mentionSuggestions,
   onInputChange,
   onAssigneeChange,
   onFocusChange,
   onDueDateChange,
   onDescriptionChange,
+  onEditorFocus,
+  onEditorBlur,
 }: TaskDetailsViewProps) => {
-  const { title, description, projectId } = task;
-  const [editorState, setEditorState] = useState<EditorState>(
-    EditorState.createEmpty()
-  );
-  const [isToolbarHidden, setIsToolbarHidden] = useState(true);
-
-  // TODO: remove once backend id done
-  useEffect(() => {
-    if (description) {
-      let editor: RawDraftContentState;
-
-      if (typeof description === "string") {
-        const blocks: RawDraftContentBlock[] = [
-          {
-            key: "eej24",
-            text: description,
-            type: "unstyled",
-            depth: 0,
-            inlineStyleRanges: [],
-            entityRanges: [],
-          },
-        ];
-        editor = { blocks, entityMap: {} };
-      } else {
-        editor = description;
-      }
-      setEditorState(EditorState.createWithContent(convertFromRaw(editor)));
-      // setEditorState(convertFromRaw(JSON.parse(editor))))
-      // EditorState.createEmpty(decorator?: DraftDecoratorType): EditorState;
-    }
-  }, [task.id]);
+  const { title, projectId } = task;
 
   return (
     <form className="form-full-width ml-0 mt-3 mb-3">
@@ -144,25 +111,12 @@ const TaskDetailsView = ({
           {editorState && (
             <Editor
               toolbarClassName={isToolbarHidden ? "d-none" : undefined}
-              onFocus={() => {
-                setIsToolbarHidden(false);
-              }}
-              onBlur={() => {
-                setIsToolbarHidden(true);
-              }}
+              onFocus={onEditorFocus}
+              onBlur={onEditorBlur}
               editorState={editorState}
-              wrapperClassName="wrapperClassName"
+              wrapperClassName="editor-wrapper"
               editorClassName="border rounded pl-2 pr-2"
-              onEditorStateChange={(editorState) => {
-                console.log(
-                  "editor: ",
-                  convertToRaw(editorState.getCurrentContent())
-                );
-                onDescriptionChange(
-                  convertToRaw(editorState.getCurrentContent())
-                );
-                setEditorState(editorState);
-              }}
+              onEditorStateChange={onDescriptionChange}
               toolbar={{
                 inline: { inDropdown: true },
                 list: { inDropdown: true },
@@ -174,29 +128,13 @@ const TaskDetailsView = ({
                 //   alt: { present: true, mandatory: true },
                 // },
               }}
-              // mention={{
-              //   separator: " ",
-              //   trigger: "@",
-              //   suggestions: [
-              //     { text: "APPLE", value: "apple", url: "apple" },
-              //     { text: "BANANA", value: "banana", url: "banana" },
-              //     { text: "CHERRY", value: "cherry", url: "cherry" },
-              //     { text: "DURIAN", value: "durian", url: "durian" },
-              //     { text: "EGGFRUIT", value: "eggfruit", url: "eggfruit" },
-              //     { text: "FIG", value: "fig", url: "fig" },
-              //     { text: "GRAPEFRUIT", value: "grapefruit", url: "grapefruit" },
-              //     { text: "HONEYDEW", value: "honeydew", url: "honeydew" },
-              //   ],
-              // }}
+              mention={{
+                separator: " ",
+                trigger: "@",
+                suggestions: mentionSuggestions,
+              }}
             />
           )}
-          {/* <textarea
-            className="form-control"
-            id="description"
-            rows={10}
-            placeholder={description}
-            onChange={onInputChange}
-          ></textarea> */}
         </div>
       </div>
     </form>
