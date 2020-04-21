@@ -1,8 +1,10 @@
 import React from "react";
-// import SideDrawerButton from "./SideDrawerButton";
+import { useSelector } from "react-redux";
 import "../../../../../../../../../css/features/application/components/workArea/components/layout/components/SideDrawer/SideDrawer.css";
+import * as store from "../../../../../../../../../store/projects/store";
 
 const SideDrawer = ({ isSideDrawerOpen }: any) => {
+  const projects = useSelector(store.projectsSelectors.getProjects);
   return (
     <nav className={isSideDrawerOpen ? "sidedrawer open" : "sidedrawer"}>
       <ul>
@@ -30,23 +32,17 @@ const SideDrawer = ({ isSideDrawerOpen }: any) => {
       </ul>
       <div className="favorites">
         <h6>Favorites</h6>
-        <ul>
-          <li>
-            <a href="#" className="project">
-              My project
-            </a>
-          </li>
-          <li>
-            <a href="#" className="project">
-              My other project
-            </a>
-          </li>
-          <li>
-            <a href="#" className="project">
-              My abandoned project
-            </a>
-          </li>
-        </ul>
+        {projects && (
+          <ul>
+            {projects.map((project) => (
+              <li key={project.id}>
+                <a href="#" className="project">
+                  {project.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div>
         <button>
