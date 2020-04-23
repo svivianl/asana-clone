@@ -1,29 +1,30 @@
 import React from "react";
 import classNames from "classnames";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
-import { SingleDatePicker } from "react-dates";
+// import { Dropdown, DropdownButton } from "react-bootstrap";
+// import "react-dates/initialize";
+// import "react-dates/lib/css/_datepicker.css";
+// import { SingleDatePicker } from "react-dates";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { taskInitialValues } from "../../types";
 import TaskDetailsViewProps from "./TaskDetailsViewProps";
 import AssigneesDropdown from "../../../../../../../../../../../../../../assigneesDropdown/AssigneesDropdown";
+import DueDatePicker from "../../../../../../../dueDatePicker/DueDatePicker";
 import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 const TaskDetailsView = ({
   task = taskInitialValues,
   assignees,
   assignee,
-  dueDate,
-  focused,
-  assigneeButtonTitle,
+  // dueDate,
+  // focused,
+  // assigneeButtonTitle,
   editorState,
   isToolbarHidden,
   mentionSuggestions,
   onInputChange,
   onAssigneeChange,
-  onFocusChange,
+  // onFocusChange,
   onDueDateChange,
   onDescriptionChange,
   onEditorFocus,
@@ -53,13 +54,17 @@ const TaskDetailsView = ({
           Due date
         </label>
         <div className="col-sm-8">
-          <SingleDatePicker
+          <DueDatePicker
+            inputDueDate={task.dueDate}
+            onDueDateChange={onDueDateChange}
+          />
+          {/* <SingleDatePicker
             date={dueDate} // momentPropTypes.momentObj or null
             onDateChange={onDueDateChange} // PropTypes.func.isRequired
             focused={focused} // PropTypes.bool
             onFocusChange={onFocusChange} // PropTypes.func.isRequired
             id="task-due-date" // PropTypes.string.isRequired,
-          />
+          /> */}
         </div>
       </div>
       <div className="form-group row">

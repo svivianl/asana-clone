@@ -1,10 +1,9 @@
 import React from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { User } from "../../types";
 import TaskDetailsViewProps from "./AssigneesDropdownProps";
+import "react-dates/lib/css/_datepicker.css";
 
 const AssigneesDropdown = ({
   assignees,
