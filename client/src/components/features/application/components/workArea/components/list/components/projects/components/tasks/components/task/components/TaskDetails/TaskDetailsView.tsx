@@ -8,6 +8,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { taskInitialValues } from "../../types";
 import TaskDetailsViewProps from "./TaskDetailsViewProps";
+import AssigneesDropdown from "../../../../../../../../../../../../../../assigneesDropdown/AssigneesDropdown";
 import "../../../../../../../../../../../../../../../css/features/application/components/workArea/components/list/components/projects/components/tasks/components/task/components/TaskDetails/TaskDetails.css";
 
 const TaskDetailsView = ({
@@ -66,7 +67,12 @@ const TaskDetailsView = ({
           Assignee
         </label>
         <div className="col-sm-10">
-          <div className="row m-1">
+          <AssigneesDropdown
+            assignees={assignees}
+            assignee={assignee}
+            onAssigneeChange={onAssigneeChange}
+          />
+          {/* <div className="row m-1">
             {assignee && assignee.image && (
               <div className="pic-area mr-1">
                 <img
@@ -90,7 +96,7 @@ const TaskDetailsView = ({
                   </Dropdown.Item>
                 ))}
             </DropdownButton>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="form-group row">
