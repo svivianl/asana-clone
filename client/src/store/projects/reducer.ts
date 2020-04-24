@@ -1,5 +1,4 @@
 import { ActionType, getType } from "typesafe-actions";
-import { cloneDeep } from "lodash";
 import { ProjectsState, createProjectsState, MessageError } from "./types";
 import { ProjectsActionsTypes } from "./actions";
 import * as ProjectsActions from "./actions";
@@ -25,16 +24,17 @@ export const projectsReducer = (
         isLoading: false,
         status: null,
       };
-    // case getType(ProjectsActions.getProjectTasksSuccess):
-    //   const { id, tasks} = action.payload;
-    //   const project: Project = { ...state[id] };
-    //   return { ...state, [id]: { ...project, addCoApplicant: true } };
-    //   return {
-    //     ...state,
-    //     projects: payload,
-    //     isLoading: false,
-    //     status: null,
-    //   };
+    case getType(ProjectsActions.getProjectTasksSuccess):
+      const { id, tasks } = action.payload;
+      const project: Project = { ...state.projects[id], tasks };
+      return {
+        ...state,
+        projects: { ...state.projects, ...project },
+        project,
+        isLoading: false,
+        status: null,
+      };
+
     case getType(ProjectsActions.getProjectsError):
     case getType(ProjectsActions.getProjectTasksError):
       return {

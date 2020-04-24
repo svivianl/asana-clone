@@ -1,6 +1,7 @@
 import { User } from "../../../../../../../../../../../../../types";
 
 interface ProjectTaskViewProps {
+  taskId: string;
   title: string;
   assignees?: User[];
   assignee?: User;

@@ -23,7 +23,7 @@ const getProjectsEpic: Epic<Action, Action, RootState> = (action$) =>
     )
   );
 
-const getctTasksEpic: Epic<Action, Action, RootState> = (action$) =>
+const getProjectTasksEpic: Epic<Action, Action, RootState> = (action$) =>
   action$.pipe(
     filter(isActionOf(actions.getProjectTasks)),
     map((action) => action.payload),
@@ -38,4 +38,5 @@ const getctTasksEpic: Epic<Action, Action, RootState> = (action$) =>
       )
     )
   );
-export default [getProjectsEpic, getctTasksEpic];
+
+export default [getProjectsEpic, getProjectTasksEpic];

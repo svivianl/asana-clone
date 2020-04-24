@@ -20,14 +20,13 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <Layout />
-      </header>
-      <main className="d-flex flex-column justify-content-center align-items-center mt-5 mb-5">
-        <Router history={history}>
-          <Routes />
-        </Router>
-      </main>
+      <Layout>
+        <main className="d-flex flex-column justify-content-center align-items-center mt-5 mb-5">
+          <Router history={history}>
+            <Routes />
+          </Router>
+        </main>
+      </Layout>
     </div>
   );
 }

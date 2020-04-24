@@ -6,10 +6,10 @@ export enum ProjectsActionsTypes {
   GetProjectsSuccess = "projects/GetProjectsSuccess",
   GetProjectsError = "projects/GetProjectsError",
   GetProjectsCancel = "projects/GetProjectsCancel",
-  GetProjectTasks = "Task/GetProjectTasks",
-  GetProjectTasksSuccess = "Task/GetProjectTasksSuccess",
-  GetProjectTasksError = "Task/GetProjectTasksError",
-  GetProjectTasksCancel = "Task/GetProjectTasksCancel",
+  GetProjectTasks = "Project/GetProjectTasks",
+  GetProjectTasksSuccess = "Project/GetProjectTasksSuccess",
+  GetProjectTasksError = "Project/GetProjectTasksError",
+  GetProjectTasksCancel = "Project/GetProjectTasksCancel",
 }
 
 export const getProjects = createAction(ProjectsActionsTypes.GetProjects)();

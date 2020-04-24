@@ -59,6 +59,7 @@ const ProjectTask = ({ task }: ProjectTaskProps) => {
 
   return (
     <ProjectTaskView
+      taskId={task.id}
       title={task.title}
       assignees={assignees}
       assignee={assignee}

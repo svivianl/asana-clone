@@ -6,6 +6,7 @@ import { SingleDatePicker } from "react-dates";
 import ProjectTaskViewProps from "./ProjectTaskViewProps";
 
 const ProjectTaskView = ({
+  taskId,
   title,
   assignees,
   assignee,
@@ -23,7 +24,7 @@ const ProjectTaskView = ({
         <input
           type="text"
           className="form-control"
-          id="task-title"
+          id={`task-title-${taskId}`}
           placeholder="Task's Title"
           defaultValue={title}
           onChange={onInputChange}
@@ -43,7 +44,7 @@ const ProjectTaskView = ({
           className={"d-inline"}
           title={assigneeButtonTitle}
           variant="secondary"
-          id="task-assigneeButton"
+          id={`task-assigneeButton-${taskId}`}
           onSelect={onAssigneeChange}
           value={assignee ? assignee.id : ""}
         >
@@ -61,7 +62,7 @@ const ProjectTaskView = ({
           onDateChange={onDueDateChange} // PropTypes.func.isRequired
           focused={focused} // PropTypes.bool
           onFocusChange={onFocusChange} // PropTypes.func.isRequired
-          id="task-due-date" // PropTypes.string.isRequired,
+          id={`task-due-date-${taskId}`} // PropTypes.string.isRequired,
         />
       </td>
     </tr>

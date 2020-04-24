@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   // Redirect,
@@ -7,8 +7,8 @@ import {
   // Switch,
   // withRouter,
 } from "react-router";
-// import Task from "./components/projects/components/tasks/components/task/Task";
-// import * as store from "../../../store/users/store";
+import ProjectView from "./components/projects/ProjectView";
+import * as store from "../../../../../../../store/projects/store";
 
 interface MatchParams {
   projectId: string;
@@ -20,14 +20,31 @@ const List = ({
     params: { projectId },
   },
 }: BaseProps) => {
+  const projects = useSelector(store.projectsSelectors.getProjects);
+  const currentProject = useSelector(store.projectsSelectors.getCurrentProject);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!Object.keys(projects).length && projects.constructor === Object) {
+      store.getProjects(dispatch)();
+    }
+  }, [projects]);
+
+  useEffect(() => {
+    if (currentProject.id !== projectId) {
+      store.getProjectTasks(dispatch)(projectId);
+    }
+  }, [currentProject]);
+
+  const handleInputChange = (e: any) => {
+    const { id, value } = e.target;
+    console.log("{[id]: value} : ", { [id]: value });
+    // store.putTask(dispatch)({ ...task, [id]: value });
+    e.preventDefault();
+  };
+
   return (
-    <Fragment>
-      <main style={{ marginTop: "64px" }} className="mr-3">
-        <h1>Project {projectId}</h1>
-        {/* <p>This is the page content!</p> */}
-        {/* <Task task={task} /> */}
-      </main>
-    </Fragment>
+    <ProjectView project={currentProject} onInputChange={handleInputChange} />
   );
 };
 
