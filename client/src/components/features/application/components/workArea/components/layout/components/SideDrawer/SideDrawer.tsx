@@ -36,7 +36,7 @@ const SideDrawer = ({ isSideDrawerOpen }: any) => {
           <ul>
             {projects.map((project) => (
               <li key={project.id}>
-                <a href="#" className="project">
+                <a href={`/list/${project.id}`} className="project">
                   {project.name}
                 </a>
               </li>
