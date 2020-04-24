@@ -15,4 +15,4 @@ export const putTask = (dispatch: Dispatch<any>) => (taskBody: Task) => {
   dispatch(actions.putTask(taskBody));
 };
 
-export const userSelectors = { ...selectors };
+export const taskSelectors = { ...selectors };

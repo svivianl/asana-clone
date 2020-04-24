@@ -29,7 +29,7 @@ const TaskDetails = ({
   );
   const [isToolbarHidden, setIsToolbarHidden] = useState(true);
   const assignees = useSelector(userStore.userSelectors.getUsers);
-  const task = useSelector(store.userSelectors.getTask);
+  const task = useSelector(store.taskSelectors.getTask);
   const dispatch = useDispatch();
   const { description } = task;
 

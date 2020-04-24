@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Project from "../list/components/projects/Project";
+// import Task from "../list/components/projects/components/tasks/components/task/Task";
 import Toolbar from "./components/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
@@ -10,7 +12,7 @@ const Layout = () => {
   const dispatch = useDispatch();
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState<Boolean>(false);
 
-  const task = useSelector(taskStore.userSelectors.getTask);
+  const task = useSelector(taskStore.taskSelectors.getTask);
 
   useEffect(() => {
     if (!Object.keys(task).length && task.constructor === Object) {
@@ -33,6 +35,11 @@ const Layout = () => {
       {isSideDrawerOpen && (
         <Backdrop backdropClickHandler={backdropClickHandler} />
       )}
+      <main style={{ marginTop: "64px" }} className="mr-3">
+        {/* <p>This is the page content!</p> */}
+        {/* <Task task={task} /> */}
+        <Project />
+      </main>
     </div>
   );
 };
