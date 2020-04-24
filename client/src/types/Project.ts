@@ -4,3 +4,7 @@ export interface Project {
   name: string;
   tasks?: Task[];
 }
+
+export interface Projects {
+  [id: string]: Project;
+}

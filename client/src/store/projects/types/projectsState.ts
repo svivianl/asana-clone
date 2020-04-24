@@ -1,4 +1,4 @@
-import { Project } from "../../../types";
+import { Project, Projects } from "../../../types";
 
 export type ErrorType = "load-projects" | "load-project" | "save-project";
 
@@ -16,7 +16,7 @@ export interface Status {
 
 export interface ProjectsState {
   isLoading: boolean;
-  projects: Project[];
+  projects: Projects;
   project: Project;
   status: Status | null;
 }

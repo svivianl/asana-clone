@@ -1,7 +1,9 @@
 import { ActionType, getType } from "typesafe-actions";
+import { cloneDeep } from "lodash";
 import { ProjectsState, createProjectsState, MessageError } from "./types";
 import { ProjectsActionsTypes } from "./actions";
 import * as ProjectsActions from "./actions";
+import { Project, Projects } from "../../types";
 
 export const projectsReducer = (
   state: ProjectsState = createProjectsState(),
@@ -10,15 +12,31 @@ export const projectsReducer = (
   const { type, payload } = action;
   switch (type) {
     case getType(ProjectsActions.getProjects):
-      return { ...state, isLoading: true };
+    case getType(ProjectsActions.getProjectTasks):
+      return { ...state, isLoading: true, status: null };
     case getType(ProjectsActions.getProjectsSuccess):
+      const projects: Projects = {};
+      action.payload.forEach((project: Project) => {
+        projects[project.id] = project;
+      });
       return {
         ...state,
-        projects: payload,
+        projects,
         isLoading: false,
         status: null,
       };
+    // case getType(ProjectsActions.getProjectTasksSuccess):
+    //   const { id, tasks} = action.payload;
+    //   const project: Project = { ...state[id] };
+    //   return { ...state, [id]: { ...project, addCoApplicant: true } };
+    //   return {
+    //     ...state,
+    //     projects: payload,
+    //     isLoading: false,
+    //     status: null,
+    //   };
     case getType(ProjectsActions.getProjectsError):
+    case getType(ProjectsActions.getProjectTasksError):
       return {
         ...state,
         isLoading: false,
@@ -28,9 +46,11 @@ export const projectsReducer = (
         },
       };
     case getType(ProjectsActions.getProjectsCancel):
+    case getType(ProjectsActions.getProjectTasksCancel):
       return {
         ...state,
         isLoading: false,
+        status: null,
       };
     default:
       return state;

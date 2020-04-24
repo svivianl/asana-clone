@@ -1,13 +1,13 @@
 import { createSelector, Selector } from "reselect";
-import { Project } from "../../types";
+import { Projects } from "../../types";
 import { RootState } from "../reducers";
 import { ProjectsState } from "./types";
 
 export const getProjectsState = (state: RootState) => state.projectsState;
 
-export const getProjects: Selector<RootState, Project[]> = createSelector(
+export const getProjects: Selector<RootState, Projects> = createSelector(
   getProjectsState,
-  (state: ProjectsState) => state?.projects || []
+  (state: ProjectsState) => state?.projects || {}
 );
 
 export const getIsLoading: Selector<RootState, boolean> = createSelector(
