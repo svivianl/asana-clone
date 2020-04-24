@@ -107,15 +107,15 @@ const TaskDetails = ({
       task={task}
       assignees={assignees}
       assignee={assignee}
-      dueDate={dueDate}
-      focused={focused}
+      // dueDate={dueDate}
+      // focused={focused}
       assigneeButtonTitle={assigneeButton}
       editorState={editorState}
       isToolbarHidden={isToolbarHidden}
       mentionSuggestions={setMentionSuggestions(assignees)}
       onInputChange={handleInputChange}
       onAssigneeChange={handleAssigneeChange}
-      onFocusChange={({ focused }: any) => setFocused(focused)}
+      // onFocusChange={({ focused }: any) => setFocused(focused)}
       onDueDateChange={handleDueDateChange}
       onDescriptionChange={handleTextAreaChange}
       onEditorFocus={() => setIsToolbarHidden(false)}
