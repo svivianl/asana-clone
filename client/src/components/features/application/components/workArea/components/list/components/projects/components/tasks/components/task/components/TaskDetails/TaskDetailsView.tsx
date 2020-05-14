@@ -35,14 +35,14 @@ const TaskDetailsView = ({
   return (
     <form className="form-full-width ml-0 mt-3 mb-3">
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label" htmlFor="title">
+        <label className="col-sm-2 col-form-label" htmlFor="task-title">
           Title
         </label>
         <div className="col-sm-10">
           <input
             type="text"
             className="form-control"
-            id="title"
+            id="task-title"
             placeholder="Task's Title"
             defaultValue={title}
             onChange={onInputChange}
@@ -50,7 +50,7 @@ const TaskDetailsView = ({
         </div>
       </div>
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label" htmlFor="dueDate">
+        <label className="col-sm-2 col-form-label" htmlFor="task-due-date">
           Due date
         </label>
         <div className="col-sm-8">
@@ -68,7 +68,7 @@ const TaskDetailsView = ({
         </div>
       </div>
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label" htmlFor="assignee">
+        <label className="col-sm-2 col-form-label" htmlFor="task-assignee">
           Assignee
         </label>
         <div className="col-sm-10">
@@ -90,7 +90,7 @@ const TaskDetailsView = ({
             <DropdownButton
               title={assigneeButtonTitle}
               variant="secondary"
-              id="assigneeButton"
+              id="task-assigneeButton"
               onSelect={onAssigneeChange}
               value={task.assigneeId}
             >
@@ -105,12 +105,14 @@ const TaskDetailsView = ({
         </div>
       </div>
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label">Project</label>
+        <label className="col-sm-2 col-form-label" htmlFor="task-project">
+          Project
+        </label>
         <div className="col-sm-10">
           <input
             type="text"
             className="form-control"
-            id="project"
+            id="task-project"
             placeholder="Project"
             defaultValue={projectId}
             onChange={onInputChange}
@@ -118,7 +120,9 @@ const TaskDetailsView = ({
         </div>
       </div>
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label">Description</label>
+        <label className="col-sm-2 col-form-label" htmlFor="task-description">
+          Description
+        </label>
         <div className="col-sm-10">
           {editorState && (
             <Editor

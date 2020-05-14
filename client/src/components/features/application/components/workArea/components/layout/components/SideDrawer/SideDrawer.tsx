@@ -34,13 +34,16 @@ const SideDrawer = ({ isSideDrawerOpen }: any) => {
         <h6>Favorites</h6>
         {projects && (
           <ul>
-            {projects.map((project) => (
-              <li key={project.id}>
-                <a href={`/list/${project.id}`} className="project">
-                  {project.name}
-                </a>
-              </li>
-            ))}
+            {Object.keys(projects).map((key) => {
+              const project = projects[key];
+              return (
+                <li key={project.id}>
+                  <a href={`/list/${project.id}`} className="project">
+                    {project.name}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

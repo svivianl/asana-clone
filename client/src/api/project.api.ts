@@ -27,3 +27,27 @@ export const getProjects$ = (): Observable<Project[]> => {
     };
   });
 };
+
+export const getProjectTasks$ = (id: string): Observable<Project> => {
+  return new Observable((subscriber) => {
+    const source = getCancelTokenSource();
+    const config = {
+      cancelToken: source.token,
+    };
+    http
+      .get(apiUrl(`/${id}/tasks`), config)
+      .then((response: any) => {
+        subscriber.next({ id, name: "", tasks: response });
+        subscriber.complete();
+      })
+      .catch((error) => {
+        console.log("api error: ", error);
+        if (!isRequestCancellation(error)) {
+          subscriber.error(error);
+        }
+      });
+    return () => {
+      source.cancel();
+    };
+  });
+};

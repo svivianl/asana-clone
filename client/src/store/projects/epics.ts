@@ -23,4 +23,20 @@ const getProjectsEpic: Epic<Action, Action, RootState> = (action$) =>
     )
   );
 
-export default [getProjectsEpic];
+const getProjectTasksEpic: Epic<Action, Action, RootState> = (action$) =>
+  action$.pipe(
+    filter(isActionOf(actions.getProjectTasks)),
+    map((action) => action.payload),
+    switchMap((projectId) =>
+      from(api.getProjectTasks$(projectId)).pipe(
+        takeUntil(filterAction(action$, actions.getProjectTasksCancel)),
+        map((project) => actions.getProjectTasksSuccess(project)),
+        catchError((error) => {
+          console.error("error: ", error);
+          return of(actions.getProjectTasksError(error));
+        })
+      )
+    )
+  );
+
+export default [getProjectsEpic, getProjectTasksEpic];
